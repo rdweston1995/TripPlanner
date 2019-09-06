@@ -27,10 +27,12 @@ const PostSchema = new Schema({
         default: Date.now
     },
     upvote: {
-        type: Number
+        type: Number,
+        default: 0
     },
     downvote: {
-        type: Number
+        type: Number,
+        default: 0
     }
 });
 
