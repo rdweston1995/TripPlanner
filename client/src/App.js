@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { BrowersRouter as Router, Route, Switch } from "react-router-dom";
-import jwt_decode from "jwt_decode";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
+
+import Home from "./pages/home";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import Profile from "./pages/profile";
+import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -36,6 +42,9 @@ class App extends Component {
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
+                        <Switch>
+                            <PrivateRoute exact path="/profile" component={Profile}/>
+                        </Switch>
                     </div>
                 </Router>
             </Provider>
