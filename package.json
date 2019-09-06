@@ -4,14 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rdweston1995/TripPlanner.git"
   },
-  "author": "",
+  "author": "rdweston1995",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rdweston1995/TripPlanner/issues"
@@ -28,5 +31,12 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^11.1.0"
-  }
+  },
+  "keywords": [
+    "MERN",
+    "auth",
+    "passport",
+    "mongo",
+    "mongoose"
+  ]
 }
