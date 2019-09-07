@@ -2,17 +2,53 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "./../actions/authActions";
+// import { getUserPosts } from "./../actions/postAction";
+import { getAllPosts } from "./../actions/postAction";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 class Profile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props.auth.user);
+    // this.props.getUserPosts(this.props.auth.user.id);
+    // this.setState({ posts: this.props.getAllPosts()});
+    // console.log(this.props.getAllPosts());
+
+    // const { data } = this.props.getAllPosts();
+    // console.log(this.state.posts);
+    // this.props.getAllPosts();
+    // axios.get("/api/posts/uploads")
+    //   .then(res => {
+    //     console.log(res.data)
+    //     this.setState({ posts: res.data});
+    //   })
+    //   .catch(err => console.log(err));
+    // console.log("/api/posts/uploads/" + this.props.auth.user.id);
+    axios.get("/api/posts/uploads/" + this.props.auth.user.id)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  }
+
+  logPosts = () => {
+    // console.log(this.state);
+    for(let i = 0; i < this.state.posts.length; i++){
+      console.log(this.state.posts[i]);
+    }
+  }
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
-
-  componentDidMount() {
-    console.log(this.props.auth);
-  }
 
   render() {
     const { user } = this.props.auth;
@@ -43,6 +79,11 @@ class Profile extends Component {
             <Link to="/upload" className="btn-flat waves-effect">
               Upload
             </Link>
+
+            <button
+              onClick={this.logPosts}
+              className="btn btn-large waves-effect waves-light hoverable"
+              >Get posts</button>
           </div>
         </div>
       </div>
@@ -52,7 +93,9 @@ class Profile extends Component {
 
 Profile.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  // getUserPosts: PropTypes.func.isRequired
+  getAllPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -61,5 +104,6 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  // { logoutUser, getUserPosts }
+  { logoutUser, getAllPosts }
 )(Profile);

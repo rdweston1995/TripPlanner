@@ -29,7 +29,7 @@ router.get("/uploads", (req, res) => {
 
 router.get("/uploads/:userId", (req, res) => {
     console.log(req.params.userId);
-    Post.find({ userIdid: req.params.userId })
+    Post.find({ userId: req.params.userId })
         .then(posts => {
             console.log(posts);
             return res.json(posts);

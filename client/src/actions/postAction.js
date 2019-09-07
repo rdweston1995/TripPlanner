@@ -19,17 +19,41 @@ export const uploadPost = (data, history) => dispatch => {
 };
 
 //Get all posts
-export const getAllPosts = () => {
+export const getAllPosts = () => dispatch => {
     axios.get("/api/posts/uploads")
-        .then(res => console.log(res))
+        .then(res => {
+            // console.log(res.data);
+            // const postData = {};
+            res.json();
+            // for(let i = 0; i < res.data.length; i++){
+            //     postData.push(res.data[i]);
+            // }
+            // console.log(postData);
+            // console.log(res)
+            // res.json()
+            // res.json(res.data);
+            // return res.data;
+        })
         .catch(err => {
-            console.log(err);
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+            // console.log(err);
         })
 };
 
 //Get users posts
 export const getUserPosts = (data) => dispatch => {
-    axios.post("/api/posts/uploads/" + data._id, data)
+    axios.get("/api/posts/uploads/:" + data.id)
         .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .catch(err => {
+            // dispatch({
+            //     // type: GET_ERRORS,
+            //     // paytload: err.response.data
+            //     // console.log(err));
+            // })
+            console.log(err);
+        });
+    // console.log(data);
 };
