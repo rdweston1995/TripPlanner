@@ -1,16 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bycrptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("./../config/keys");
-const passport = require("passport");
 
 //Load Post model
 const Post = require("./../models/Post");
 
 router.post("/upload", (req, res) => {
     const newPost = new Post ({
-        _id: req.body._id,
+        userId: req.body.userId,
         title: req.body.title,
         userName: req.body.userName,
         picUrl: req.body.picUrl,
@@ -31,9 +27,9 @@ router.get("/uploads", (req, res) => {
         }).catch(err => console.log(err));
 });
 
-router.get("/uploads/:id", (req, res) => {
-    console.log(req.params.id);
-    Post.find({ _id: req.params.id })
+router.get("/uploads/:userId", (req, res) => {
+    console.log(req.params.userId);
+    Post.find({ userIdid: req.params.userId })
         .then(posts => {
             console.log(posts);
             return res.json(posts);

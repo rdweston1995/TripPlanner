@@ -11,6 +11,7 @@ import Home from "./pages/home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Profile from "./pages/profile";
+import Upload from "./pages/upload";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
 // Check for token to keep user logged in
@@ -44,6 +45,7 @@ class App extends Component {
                         <Route exact path="/register" component={Register}/>
                         <Switch>
                             <PrivateRoute exact path="/profile" component={Profile}/>
+                            <PrivateRoute exact path="/upload" component={Upload}/>
                         </Switch>
                     </div>
                 </Router>

@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "./../actions/authActions";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
+
+  componentDidMount() {
+    console.log(this.props.auth);
+  }
 
   render() {
     const { user } = this.props.auth;
@@ -35,6 +40,9 @@ class Profile extends Component {
             >
               Logout
             </button>
+            <Link to="/upload" className="btn-flat waves-effect">
+              Upload
+            </Link>
           </div>
         </div>
       </div>
