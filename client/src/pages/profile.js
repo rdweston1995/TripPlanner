@@ -17,20 +17,7 @@ class Profile extends Component {
 
   componentDidMount() {
     console.log(this.props.auth.user);
-    // this.props.getUserPosts(this.props.auth.user.id);
-    // this.setState({ posts: this.props.getAllPosts()});
-    // console.log(this.props.getAllPosts());
 
-    // const { data } = this.props.getAllPosts();
-    // console.log(this.state.posts);
-    // this.props.getAllPosts();
-    // axios.get("/api/posts/uploads")
-    //   .then(res => {
-    //     console.log(res.data)
-    //     this.setState({ posts: res.data});
-    //   })
-    //   .catch(err => console.log(err));
-    // console.log("/api/posts/uploads/" + this.props.auth.user.id);
     axios.get("/api/posts/uploads/" + this.props.auth.user.id)
       .then(res => {
         console.log(res.data);
